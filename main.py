@@ -197,7 +197,7 @@ def ingame_rquest(p_uid, username, n = 10):
             print(f'error in match {match}')
             n = n-1
         if n == 0:
-            return f'error in all data for summoner {username}'
+            return f'error in data for summoner {username}'
         if deaths == 0:
             return f'{username} WR: {round((win/n)*100),2} % ({win} out of {n}).\nTotal kda in last {n} games: {(kills)}/{deaths}/{assists}. Av Kda last {n} games : {round(kills/n,2)}/{round(deaths/n,2)}/{round(assists/n,2)}. Last {n} games kda = {round((kills + assists)/1,2)}.\nFirst blood participation: {firstBloodP}/{n}, Pentakills: {pentas}, Surrenders: {surrenderedGames}, Average dpm: {round(dpm/n,2)}, average KP: {round(kp*100/n,2)}%, solokills: {solokills} ({solokills/n}/game),average damage%: {round(damagePercentage*100/n,2)}%\nChampions Played: {champions}'
     return f'{username} WR: {round((win/n)*100),2} % ({win} out of {n}).\nTotal kda in last {n} games: {(kills)}/{deaths}/{assists}. Av Kda last {n} games : {round(kills/n,2)}/{round(deaths/n,2)}/{round(assists/n,2)}. Last {n} games kda = {round((kills + assists)/deaths,2)}.\nFirst blood participation: {firstBloodP}/{n}, Pentakills: {pentas}, Surrenders: {surrenderedGames}, Average dpm: {round(dpm/n,2)}, average KP: {round(kp*100/n,2)}%, solokills: {solokills} ({solokills/n}/game),average damage%: {round(damagePercentage*100/n,2)}%\nChampions Played: {champions}'
@@ -225,9 +225,9 @@ def ingame_function(riot_id='titofuentes#euw'):
         elif participant['teamId'] == 200:
             team_200.append(ingame_rquest(participant['puuid'],participant['summonerName']))
     if aliado == 100:
-        return [f'Estadisticas equipo aliado: \n\n{team_100[0]}\n\n{team_100[1]}\n\n{team_100[2]}\n\n{team_100[3]}',f'Estadisticas equipo enemigo: \n\n{team_200[0]}\n\n{team_200[1]}\n\n{team_200[2]}\n\n{team_200[3]}\n\n{team_200[4]}']
+        return [f'Ally team stats: \n\n{team_100[0]}\n\n{team_100[1]}\n\n{team_100[2]}\n\n{team_100[3]}',f'EEnemy team stats: \n\n{team_200[0]}\n\n{team_200[1]}\n\n{team_200[2]}\n\n{team_200[3]}\n\n{team_200[4]}']
     if aliado == 200:
-        return [f'Estadisticas equipo aliado: \n\n{team_200[0]}\n\n{team_200[1]}\n\n{team_200[2]}\n\n{team_200[3]}',f'Estadisticas equipo enemigo: \n\n{team_100[0]}\n\n{team_100[1]}\n\n{team_100[2]}\n\n{team_100[3]}\n\n{team_200[4]}']
+        return [f'Ally team stats: \n\n{team_200[0]}\n\n{team_200[1]}\n\n{team_200[2]}\n\n{team_200[3]}',f'Enemy team stats: \n\n{team_100[0]}\n\n{team_100[1]}\n\n{team_100[2]}\n\n{team_100[3]}\n\n{team_200[4]}']
             
     
 def mastery_func (riot_id='titofuentes#euw',n = 20):
@@ -239,7 +239,7 @@ def mastery_func (riot_id='titofuentes#euw',n = 20):
     string = f'{n} champions with Highest mastery for {rq["gameName"]}:\n '
     masteries = requests.get(f'https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{p_uid}?api_key={api_key}').json()
     for mastery in masteries[:n]:
-        string = string +  f' {champions[(mastery["championId"])]}: Level: {mastery["championLevel"]}, {mastery["championPoints"]} points\n'
+        string = string +  f'{champions[(mastery["championId"])]}: Level: {mastery["championLevel"]} - {mastery["championPoints"]} Points\n'
     print('fin mastery')
     return string
 
@@ -254,7 +254,7 @@ def all_mastery_func (riot_id='titofuentes#euw',n = 20):
     string = f'{n} champions with Highest mastery for {rq["gameName"]}:\n '
     masteries = requests.get(f'https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{p_uid}?api_key={api_key}').json()
     for mastery in masteries:
-        masterii.append(f' {champions[(mastery["championId"])]}: Level: {mastery["championLevel"]}, {mastery["championPoints"]} points\n')
+        masterii.append(f'{champions[(mastery["championId"])]}: Level: {mastery["championLevel"]} - {mastery["championPoints"]} Points\n')
     print('fin alll masteries')
     return masterii
 
