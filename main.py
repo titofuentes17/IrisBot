@@ -260,7 +260,7 @@ def all_mastery_func (riot_id='titofuentes#euw',n = 20):
 
 
 
-
+#command calls
 
 @bot.event
 async def on_ready():
