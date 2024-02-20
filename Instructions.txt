@@ -1,0 +1,19 @@
+Invite bot: https://discord.com/api/oauth2/authorize?client_id=1184947540542632038&permissions=101376&scope=bot
+
+use bot: type in any channel bot has access to: ! + comand (example: !kda)
+
+Commands:
+
+kda: returns kda of given summoner. ex: !kda example#tag
+
+winrate: returns winrate of given summoner. ex: !winrate example#tag
+
+masteries: returns highest masteries of given summoner. ex: !masteries example#tag
+
+all_masteries: returns all_masteries  of given summoner. ex: !all_masteries example#tag
+
+pings: returns ping info  of given summoner in last games. ex: !pings example#tag
+
+summoner: returns important info about summoner. ex: !summoner example#tag
+
+ingame: returns useful info of 4 allies and 5 enemies in 5v5 game. ex: !ingame example#tag
